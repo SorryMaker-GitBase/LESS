@@ -1,0 +1,90 @@
+/*
+    编译后会被保留到新的css文件中
+*/
+// 编译后不会被保留到新的css文件中
+
+/*变量*/
+//定义一个属性值为变量
+@bgcolor:pink;
+//定义一个属性名为变量
+@boxWidth:width;
+//定义一个选择器为变量
+@boxSelecter : #box02;
+
+/*
+    相同，重复的代码使用混合,
+    普通混合没有(),会被编译到新的css文件中
+    没有输出的混合带()，并且可以传入参数,参数可带默认值
+*/
+.boxStyle(@top:10px,@left:10px){
+    background-image:url(./images/less.png) ;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    top: @top;
+    left: @left;
+}
+/*
+    匹配模式
+    画一个指定大小和方向的三角形
+*/
+.triangle(Top,@borderWidth,@borderColor){
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+    border-width: @borderWidth;
+    border-style: dashed dashed solid dashed;
+    border-color: transparent transparent @borderColor transparent;
+}
+.triangle(Right,@borderWidth,@borderColor){
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+    border-width: @borderWidth;
+    border-style: dashed dashed dashed solid;
+    border-color: transparent transparent transparent @borderColor;
+}
+.triangle(Bottom,@borderWidth,@borderColor){
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+    border-width: @borderWidth;
+    border-style: solid dashed dashed  dashed;
+    border-color: @borderColor transparent transparent transparent;
+}
+.triangle(Left,@borderWidth,@borderColor){
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+    border-width: @borderWidth;
+    border-style: dashed solid dashed  dashed;
+    border-color: transparent @borderColor transparent  transparent;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+//less嵌套
+body{
+    background: @bgcolor;
+    #box01{
+        @{boxWidth}:200px;
+        height:200px;
+        //&符号的使用
+        &:hover{
+            border: 1px solid #aaaaaa;
+        }
+        //使用混和
+        .boxStyle(50px, 50px)
+    }
+    @{boxSelecter}{
+        width: 200px;
+        height: 200px;
+        //使用混合，指定参数
+        .boxStyle(@left:200px);
+    }
+    #box03{
+        .triangle(Top,50px,red);
+    }
+}

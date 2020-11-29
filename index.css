@@ -1,0 +1,51 @@
+/*
+    编译后会被保留到新的css文件中
+*/
+/*变量*/
+/*
+    相同，重复的代码使用混合,
+    普通混合没有(),会被编译到新的css文件中
+    没有输出的混合带()，并且可以传入参数,参数可带默认值
+*/
+/*
+    匹配模式
+    画一个指定大小和方向的三角形
+*/
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: pink;
+}
+body #box01 {
+  width: 200px;
+  height: 200px;
+  background-image: url(./images/less.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  top: 50px;
+  left: 50px;
+}
+body #box01:hover {
+  border: 1px solid #aaaaaa;
+}
+body #box02 {
+  width: 200px;
+  height: 200px;
+  background-image: url(./images/less.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  top: 10px;
+  left: 200px;
+}
+body #box03 {
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+  border-width: 50px;
+  border-style: dashed dashed solid dashed;
+  border-color: transparent transparent red transparent;
+}
